@@ -1,0 +1,127 @@
+﻿<Window x:Class="HadayIMWpfControls.WPFControls.Win.MessageManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HadayIMWpfControls.WPFControls.Win"
+        xmlns:control="clr-namespace:HadayIMWpfControls.WPFControls"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d" 
+        WindowStyle="None"
+        ResizeMode="NoResize" 
+        Title="MessageManager" Height="600" Width="800">
+    <Window.Resources>
+        <GeometryGroup x:Key="clipGeometry" FillRule="Nonzero">
+            <EllipseGeometry RadiusX="14" RadiusY="14" Center="14, 14"></EllipseGeometry>
+        </GeometryGroup>
+        <!-->鼠标移上去颜色<-->
+        <SolidColorBrush x:Key="Item.MouseOver.Background" Color="#FFFFFF"/>
+        <!-->选中背景色<-->
+        <SolidColorBrush x:Key="Item.IsSelected.Background" Color="#FFFFFF"/>
+        <!-->文字前景色<-->
+        <SolidColorBrush x:Key="Item.TextBlock.Foreground" Color="Black"/>
+    </Window.Resources>    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>             
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+         <Border Background="#5cb1df" Height="30" Grid.ColumnSpan="2" MouseMove="Border_MouseMove" MouseDown="Border_MouseDown"/>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <Image Source="../Images/messageIcon.png" Height="15" Margin="10,0" ></Image>
+            <TextBlock  FontSize="14" Foreground="White">消息管理器</TextBlock>
+        </StackPanel>        
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" Opacity="1" Visibility="Visible" >
+            <Button  Width="20" Height="20" BorderThickness="0" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="5,0" Click="Button_Click_1">
+                <Image Source="../Images/upload.png" Width="20" Height="20"></Image>
+            </Button>
+            <Button  Width="20" Height="20" BorderThickness="0" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="5,0" Click="Button_Click_2">
+                <Image Source="../Images/min.png" Width="20" Height="20"></Image>
+            </Button>
+            <Button  Width="20" Height="20" BorderThickness="0" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5,0" Click="Button_Click_3">
+                <Image Source="../Images/max.png" Width="20" Height="20"></Image>
+            </Button>
+            <Button Grid.ColumnSpan="2" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="0" Background="Transparent" Margin="5,0" Click="Button_Click">
+                <Image Source="../Images/close.png" Width="20" Height="20"></Image>
+            </Button>
+        </StackPanel>        
+        <ListBox x:Name="chatNavigationList" Grid.Row="1" Grid.RowSpan="3" Background="#f1f1f1" BorderThickness="1,0,0,1" BorderBrush="#c9c9c9"  Padding="-1" Margin="0"   Foreground="{StaticResource Item.TextBlock.Foreground}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Margin" Value="-0" />
+                    <Setter Property="Padding" Value="-0" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <Grid Background="{TemplateBinding Background}">
+                                    <Border x:Name="selectedBackground" Background="White" Width="3" HorizontalAlignment="Left" Visibility="Hidden"></Border>
+                                    <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource Item.MouseOver.Background}"></Setter>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="selectedBackground" Property="Visibility" Value="Visible"></Setter>
+                                        <Setter  Property="Background" Value="{StaticResource Item.IsSelected.Background}"></Setter>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="175" Background="Transparent">                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>                        
+                        <Image x:Name="headImage" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Source="{Binding HeadImage}" Width="28" Height="28" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,8,5,8" Stretch="Fill" Clip="{StaticResource clipGeometry}"></Image>
+                        <Path x:Name="icon" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" 
+                                  Visibility="Collapsed"
+                                  Width="8"
+                                  Height="8"
+                                  Data="F1 M 401.281,299.818L 398.795,297.333L 401.281,294.847C 401.684,294.445 401.684,293.79 401.281,293.386C 400.877,292.982 400.222,292.982 399.82,293.386L 397.334,295.872L 394.848,293.386C 394.445,292.982 393.79,292.982 393.386,293.386C 392.982,293.79 392.982,294.445 393.386,294.848L 395.872,297.334L 393.387,299.818C 392.984,300.222 392.982,300.876 393.387,301.281C 393.791,301.684 394.445,301.683 394.848,301.279L 397.333,298.795L 399.818,301.281C 400.222,301.684 400.877,301.684 401.281,301.281C 401.684,300.877 401.684,300.222 401.281,299.818 Z "
+                                  Fill="Black"
+                                  Opacity="0.5"
+                                  Stretch="Fill" Cursor="Hand" MouseUp="icon_MouseUp" >
+                        </Path>
+                        <TextBlock x:Name="userName" Grid.Column="1" Text="{Binding UserName}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,20,5"></TextBlock>                      
+                       
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter  TargetName="icon" Property="Visibility" Value="Visible"></Setter>
+                        </Trigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Border Grid.Row="1" Grid.Column="1" BorderBrush="#c9c9c9" BorderThickness="0,0,1,0"></Border>
+        <StackPanel Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+            <TextBlock FontSize="15" x:Name="otherUser"  />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Margin="8">
+            <Button   BorderThickness="0" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="5,0" Click="Button_Click_4">
+                <Image Source="../Images/arrow_refresh.png" Opacity="0.8" Cursor="Hand"></Image>
+            </Button>
+            <Button   BorderThickness="0" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="5,0" Click="Button_Click_5">
+                <Image Source="../Images/delete.png"  Opacity="0.8" Cursor="Hand"></Image>
+            </Button>            
+        </StackPanel>
+        <control:ChatHistoryList x:Name="chatHistoryList" Grid.Row="2" Grid.Column="1"></control:ChatHistoryList>
+        
+     
+
+    </Grid>
+       
+    
+</Window>

@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="HadayIMWpfControls.WPFControls.ChatHistoryListTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HadayIMWpfControls.WPFControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <local:ChatHistoryList x:Name="chatHistoryList" ></local:ChatHistoryList>    
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <Button Width="100" Click="Button_Click">插入图文历史数据</Button>
+            <Button Width="100" Click="Button_Click1">获取查询信息</Button>
+            <Button Width="100" Click="Button_Click_1">翻页按钮控制</Button>
+            <Button Width="150" Click="Button_Click_2">切换显示小喇叭/日期控件</Button>
+            <Button Width="130" Click="Button_Click_3">设置获取日期控件数据</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

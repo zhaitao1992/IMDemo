@@ -1,0 +1,32 @@
+﻿<Window x:Class="HadayIMWpfControls.WPFControls.Win.ChatWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HadayIMWpfControls.WPFControls"
+        mc:Ignorable="d"
+        Title="{Binding UserName}" Height="450" Width="800" DataContextChanged="Window_DataContextChanged">
+    <Grid>
+        <Grid Background="Transparent" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"  />
+            </Grid.ColumnDefinitions>
+            <local:ChatList x:Name="chatList" Grid.Column="1"></local:ChatList>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Background="Wheat">
+                
+                <Button Grid.Row="1" Width="100" Height="25" Click="Button_Click_1" >自己添加一条消息</Button>
+                <Button Grid.Row="1" Width="100" Height="25" Click="Button_Click_2" >窗口分离</Button>
+                <Button Grid.Row="1" Width="100" Height="25" Click="Button_Click_3" >窗口合并</Button>
+            </StackPanel>
+            <local:ChatNavigationList x:Name="chatNavigationList" Grid.RowSpan="2" Width="200" Background="#5DB1DF" Visibility="Collapsed" ></local:ChatNavigationList>
+        </Grid>
+
+    </Grid>
+
+</Window>

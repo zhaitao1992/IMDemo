@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F7CAD421-A807-4C82-97D8-B513EFF17162}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HadayIMWpfControls</RootNamespace>
+    <AssemblyName>HadayIMWpfControls</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="WPFControls\Chat\Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFControls\Converters\ConverterImageStateToVisible.cs" />
+    <Compile Include="WPFControls\Converters\ConverterMessageToDocument.cs" />
+    <Compile Include="WPFControls\Converters\ConverterStringToBrushes .cs" />
+    <Compile Include="WPFControls\Helper\FlowDocumentHelper.cs" />
+    <Compile Include="WPFControls\Helper\ImageStretchHelper.cs" />
+    <Compile Include="WPFControls\Helper\RichTextBoxHelper.cs" />
+    <Compile Include="WPFControls\Helper\ScrollViewerBehavior.cs" />
+    <Compile Include="WPFControls\Helper\VisualTreeHelperExt.cs" />
+    <Compile Include="WPFControls\Test\ChatHistoryListTest.xaml.cs">
+      <DependentUpon>ChatHistoryListTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFControls\Test\ChatListTest.xaml.cs">
+      <DependentUpon>ChatListTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFControls\Chat\ChatList.xaml.cs">
+      <DependentUpon>ChatList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFControls\Chat\ChatFrameTemplateSelector.cs" />
+    <Compile Include="WPFControls\Chat\ChatHistoryList.xaml.cs">
+      <DependentUpon>ChatHistoryList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFControls\Chat\ChatNavigationList.xaml.cs">
+      <DependentUpon>ChatNavigationList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFControls\Chat\UserInfo.xaml.cs">
+      <DependentUpon>UserInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFControls\Converters\ConverterOrientationTypesToBrushes.cs" />
+    <Compile Include="WPFControls\Converters\ConverterBoolToBrushes.cs" />
+    <Compile Include="WPFControls\Converters\ConverterStringToIamgeSource.cs" />
+    <Compile Include="WPFControls\Helper\VisualTreeHelperCstm.cs" />
+    <Compile Include="WPFControls\Models\ChatNavigationModel.cs" />
+    <Compile Include="WPFControls\Models\Enums.cs" />
+    <Compile Include="WPFControls\Models\FileModel.cs" />
+    <Compile Include="WPFControls\Models\MessageModel.cs" />
+    <Compile Include="WPFControls\Models\ModelBase.cs" />
+    <Compile Include="WPFControls\Models\UserInfoModel.cs" />
+    <Compile Include="WPFControls\Test\TestMain.xaml.cs">
+      <DependentUpon>TestMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFControls\Test\ChatWindow.xaml.cs">
+      <DependentUpon>ChatWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFControls\Win\MessageManager.xaml.cs">
+      <DependentUpon>MessageManager.xaml</DependentUpon>
+    </Compile>
+    <Page Include="WPFControls\Chat\Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFControls\Test\ChatHistoryListTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFControls\Test\ChatListTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFControls\Chat\ChatList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFControls\Chat\ChatHistoryList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFControls\Chat\ChatNavigationList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFControls\Chat\FileControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WPFControls\Chat\FileControl.xaml.cs">
+      <DependentUpon>FileControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="WPFControls\Chat\UserInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFControls\Test\TestMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPFControls\Test\ChatWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFControls\Win\MessageManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\error.png" />
+    <Resource Include="WPFControls\Images\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\Menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\aName.png" />
+    <Resource Include="WPFControls\Images\email.png" />
+    <Resource Include="WPFControls\Images\phone.png" />
+    <Resource Include="WPFControls\Images\telephone.png" />
+    <Resource Include="WPFControls\Images\user_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\userInfoBg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\messageIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\searching.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\arrow_left.png" />
+    <Resource Include="WPFControls\Images\arrow_refresh.png" />
+    <Resource Include="WPFControls\Images\arrow_right.png" />
+    <Resource Include="WPFControls\Images\delete.png" />
+    <Resource Include="WPFControls\Images\navigate_left.png" />
+    <Resource Include="WPFControls\Images\navigate_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\exclamation_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\spinner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\sound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WPFControls\Images\close.png" />
+    <Resource Include="WPFControls\Images\max.png" />
+    <Resource Include="WPFControls\Images\min.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
