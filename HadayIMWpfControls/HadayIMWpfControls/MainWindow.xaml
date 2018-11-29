@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:HadayIMWpfControls.WPFControls"
         Title="MainWindow" Height="500" Width="800"  Closing="Window_Closing">   
     <Grid Background="Transparent">
-        <local:ChatListTest></local:ChatListTest>
+        <local:ChatListTest x:Name="TestList"></local:ChatListTest>
       
     </Grid>
 </Window>
