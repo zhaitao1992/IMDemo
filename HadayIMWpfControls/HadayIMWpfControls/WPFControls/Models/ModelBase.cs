@@ -10,7 +10,7 @@ namespace HadayIMWpfControls.WPFControls.Models
 {
     public class ModelBase : INotifyPropertyChanged
     {
-        public void Set<T>(ref T field, T newValue = default(T), [CallerMemberName]string propertyName = "")
+        public void Set<T>(ref T field, T newValue = default(T), string propertyName = "")
         {
             if ((newValue != null && newValue.Equals(field)) || (newValue == null && field == null))
                 return;

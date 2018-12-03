@@ -58,7 +58,7 @@ namespace HadayIMWpfControls.WPFControls
 
             //在用户信息弹窗点击发送消息
             chatList.InUserInfoPageSendMessageEvent += ChatList_InUserInfoPageSendMessageEvent;
-            
+
             //图像点击事件
             chatList.ImageClickEvent += ChatList_ImageClickEvent;
         }
@@ -72,7 +72,7 @@ namespace HadayIMWpfControls.WPFControls
         }
         private void ChatList_InUserInfoPageSendMessageEvent(object sender)
         {
-           var userinfo =  sender as UserInfoModel;
+            var userinfo = sender as UserInfoModel;
         }
         private void ChatList_ScrollChangedHomeEvent()
         {
@@ -86,27 +86,27 @@ namespace HadayIMWpfControls.WPFControls
 
         private void ChatList_DropEvent(string filePath)
         {
-            
+
         }
         private void ChatList_DownFileEvent(object sender)
         {
             //文件下载
         }
 
-       
+
         private void ChatList_OffTransferEvent(object sender)
         {
-             
+
         }
 
         private void ChatList_TransferOtherEvent(object sender)
         {
-            
+
         }
 
         private void ChatList_OpenFolderEvent(object sender)
         {
-           
+
         }
 
         private void ChatList_OpenFileEvent(object sender)
@@ -116,17 +116,17 @@ namespace HadayIMWpfControls.WPFControls
 
         private void ChatList_TranspondMeaageEvent(object o)
         {
-           
+
         }
-        
+
         private void ChatList_UndoEvent(object o)
         {
-            
+
         }
 
         private void ChatList_ReferenceEvent(object o)
         {
-          
+
         }
 
         private void ChatList_CopyEvent(object o)
@@ -161,7 +161,7 @@ namespace HadayIMWpfControls.WPFControls
 
             messageModelsList = new ObservableCollection<MessageModel>();
 
-          
+
             imageModel = new MessageModel()
             {
                 ID = DateTime.Now.Second,
@@ -304,6 +304,12 @@ namespace HadayIMWpfControls.WPFControls
             };
             messageModelsList.Add(imageModel);
         }
+        MessageModel messageModel1 = new MessageModel()
+        {
+            ID = DateTime.Now.Second,
+            MessageType = MessageTypes.SystemMessage,
+            Message = "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString(),
+        };
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -311,6 +317,9 @@ namespace HadayIMWpfControls.WPFControls
             //fileTest.FileProgressValue = 100;
             //fileTest.FileMsg = "发送成功";
             imageModel.ImageState = ImageState.Error;
+            //messageModelsList.Add(messageModel1);
+            //messageModel1.Message = "123";
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -365,6 +374,15 @@ namespace HadayIMWpfControls.WPFControls
                 Message = textBox.Text.ToString(),
                 MessageTime = DateTime.Now.ToString()
             });
+            messageModelsList.Insert(0, new MessageModel()
+            {
+                ID = DateTime.Now.Second,
+                MessageType = MessageTypes.RichText,
+                OrientationType = OrientationTypes.Right,
+                UserInfo = userInfo,
+                Message = textBox.Text.ToString(),
+                MessageTime = DateTime.Now.ToString()
+            });
         }
 
         private void textBox_Loaded(object sender, RoutedEventArgs e)
@@ -409,6 +427,22 @@ namespace HadayIMWpfControls.WPFControls
                 ID = DateTime.Now.Second,
                 MessageType = MessageTypes.Image,
                 OrientationType = OrientationTypes.Right,
+                Message = @"d:\9.jpg",
+            };
+            messageModelsList.Add(imageModel);
+            imageModel = new MessageModel()
+            {
+                ID = DateTime.Now.Second,
+                MessageType = MessageTypes.Image,
+                OrientationType = OrientationTypes.Left,
+                Message = @"d:\1.jpg",
+            };
+            messageModelsList.Add(imageModel);
+            imageModel = new MessageModel()
+            {
+                ID = DateTime.Now.Second,
+                MessageType = MessageTypes.Image,
+                OrientationType = OrientationTypes.Left,
                 Message = @"d:\9.jpg",
             };
             messageModelsList.Add(imageModel);

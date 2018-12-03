@@ -138,7 +138,7 @@
                         </Path.Data>
                     </Path>
                     <Border x:Name="contentBorder" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenuOther}">
-                        <Image Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform" MaxHeight="200" MaxWidth="300" Mouse.MouseUp="Image_MouseUp"></Image>                    
+                        <Image Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform" MaxHeight="200" MaxWidth="300" MouseLeftButtonDown="Image_MouseUp" helper:ImageStretchHelper.ImageStretch="{Binding Message}"></Image>                    
                     </Border>
                 </Grid>
                 <ProgressBar x:Name="progressBar"  Grid.Row="1" Grid.Column="1"   Height="2"  Foreground="#3498DB"  Value="{Binding ImageProgressValue}" Margin="4,8,0,0" Visibility="{Binding ImageState,Converter={StaticResource ConverterImageStateToProgressVisiblel}}" />
@@ -397,7 +397,7 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <Border x:Name="contentBorder" Grid.Column="0" Grid.RowSpan="2"  VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenu}">
-                        <Image x:Name="image" Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}"  helper:ImageStretchHelper.ImageStretch="{Binding Message}"  MaxHeight="200" MaxWidth="200" Mouse.MouseUp="Image_MouseUp"></Image>
+                        <Image x:Name="image" Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform"  helper:ImageStretchHelper.ImageStretch="{Binding Message}"  MaxHeight="200" MaxWidth="200" MouseLeftButtonDown="Image_MouseUp"></Image>
                     </Border>
                     <Path x:Name="rightTrianglePath" Grid.Column="1" Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
                         <Path.Data>

@@ -32,7 +32,7 @@
             </Grid>              
         </DataTemplate>
         <DataTemplate x:Key="RichText">
-            <Grid  ContextMenu="{StaticResource ContextMenu}" Width="{Binding Width}"  Background="Transparent">
+            <Grid  ContextMenu="{StaticResource ContextMenu}" Width="{Binding Width}"  Background="Transparent" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
@@ -43,11 +43,11 @@
                                 <Run x:Name="Time" Text="{Binding MessageTime}"></Run>
                 </TextBlock>
                 <!--<TextBlock Grid.Row="1" Text="{Binding Message}" TextWrapping="Wrap" Margin="15,5"></TextBlock>-->
-                <RichTextBox Grid.Row="1" IsReadOnly="true"  Background="Transparent" BorderThickness="0" ContextMenu="{x:Null}" Margin="15,5" helper:RichTextBoxHelper.DocumentXaml="{Binding Message}"   FontSize="12" MaxWidth="500"/>
+                <RichTextBox Grid.Row="1" IsReadOnly="true"  Background="Transparent" BorderThickness="0" ContextMenu="{x:Null}" Margin="15,5" helper:RichTextBoxHelper.DocumentXaml="{Binding Message}"   FontSize="12" MaxWidth="500" HorizontalAlignment="Left"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="Image">
-            <Grid  ContextMenu="{StaticResource ContextMenu}" Width="{Binding Width}"  Background="Transparent">
+            <Grid  ContextMenu="{StaticResource ContextMenu}" Width="{Binding Width}"  Background="Transparent" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
@@ -57,7 +57,7 @@
                                 <Run Text=" "></Run>
                                 <Run x:Name="Time" Text="{Binding MessageTime}"></Run>
                 </TextBlock>
-                <Image Grid.Row="1" Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform" MaxHeight="200" MaxWidth="300" Margin="15,5"></Image>
+                <Image Grid.Row="1" Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform" MaxHeight="200" MaxWidth="300" Margin="15,5" helper:ImageStretchHelper.ImageStretch="{Binding Message}"></Image>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="File">

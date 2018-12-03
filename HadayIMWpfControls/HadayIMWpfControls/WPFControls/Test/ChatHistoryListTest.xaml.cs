@@ -308,5 +308,43 @@ namespace HadayIMWpfControls.WPFControls
                );
 
         }
+
+        MessageModel imageModel;
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            imageModel = new MessageModel()
+            {
+                ID = DateTime.Now.Second,
+                MessageType = MessageTypes.Image,
+                OrientationType = OrientationTypes.Right,
+                Message = @"d:\1.jpg",
+            };
+            messageModelsList.Add(imageModel);
+            imageModel = new MessageModel()
+            {
+                ID = DateTime.Now.Second,
+                MessageType = MessageTypes.Image,
+                OrientationType = OrientationTypes.Right,
+                Message = @"d:\9.jpg",
+            };
+            messageModelsList.Add(imageModel);
+            imageModel = new MessageModel()
+            {
+                ID = DateTime.Now.Second,
+                MessageType = MessageTypes.Image,
+                OrientationType = OrientationTypes.Left,
+                Message = @"d:\1.jpg",
+            };
+            messageModelsList.Add(imageModel);
+            imageModel = new MessageModel()
+            {
+                ID = DateTime.Now.Second,
+                MessageType = MessageTypes.Image,
+                OrientationType = OrientationTypes.Left,
+                Message = @"d:\9.jpg",
+            };
+            messageModelsList.Add(imageModel);
+
+        }
     }
 }

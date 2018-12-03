@@ -33,5 +33,7 @@ namespace HadayIMWpfControls
             //关闭主窗体 需结束程序
             Application.Current.Shutdown();
         }
+
+       
     }
 }

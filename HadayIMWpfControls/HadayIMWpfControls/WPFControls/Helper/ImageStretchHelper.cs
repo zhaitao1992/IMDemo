@@ -33,7 +33,7 @@ namespace HadayIMWpfControls.WPFControls.Helper
                    var imageSoure =  new BitmapImage(new Uri(e.NewValue.ToString(), UriKind.RelativeOrAbsolute));
                     if (imageSoure.Width > image.MaxWidth || imageSoure.Height > image.MaxHeight)
                     {
-                        image.Stretch = System.Windows.Media.Stretch.UniformToFill;
+                        image.Stretch = System.Windows.Media.Stretch.Uniform;
                     }
                     else
                     {
