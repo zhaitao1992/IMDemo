@@ -41,6 +41,7 @@ namespace HadayIMWpfControls.WPFControls
             chatList.ReferenceEvent += ChatList_ReferenceEvent;
             chatList.UndoEvent += ChatList_UndoEvent;
             chatList.TranspondMeaageEvent += ChatList_TranspondMeaageEvent;
+            chatList.SaveAsEvent += ChatList_SaveAsEvent;
 
             //文件操作
             chatList.OpenFileEvent += ChatList_OpenFileEvent;
@@ -62,6 +63,8 @@ namespace HadayIMWpfControls.WPFControls
             //图像点击事件
             chatList.ImageClickEvent += ChatList_ImageClickEvent;
         }
+
+      
 
 
 
@@ -133,13 +136,18 @@ namespace HadayIMWpfControls.WPFControls
         {
             var temp = o as MessageModel;
         }
+
+        private void ChatList_SaveAsEvent(object o)
+        {
+            var temp = o as MessageModel;
+        }
         #endregion
 
         private void IntiData()
         {
 
-            var imageTemp = new BitmapImage(new Uri(@"d:\2.jpg", UriKind.Absolute));
-            var imageTemp2 = new BitmapImage(new Uri(@"d:\1.jpg", UriKind.Absolute));
+            var imageTemp = new BitmapImage(new Uri(@"d:\99.jpg", UriKind.Absolute));
+            var imageTemp2 = new BitmapImage(new Uri(@"d:\99.jpg", UriKind.Absolute));
 
 
 
@@ -167,7 +175,9 @@ namespace HadayIMWpfControls.WPFControls
                 ID = DateTime.Now.Second,
                 MessageType = MessageTypes.Image,
                 OrientationType = OrientationTypes.Right,
+                UserInfo = userInfo,
                 Message = @"d:\2.jpg",
+                IsShowUserName = true,
             };
             messageModelsList.Add(imageModel);
             messageModelsList.Add(new MessageModel()
@@ -177,6 +187,7 @@ namespace HadayIMWpfControls.WPFControls
                 OrientationType = OrientationTypes.Left,
                 UserInfo = otherUserInfo,
                 Message = "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString(),
+                IsShowUserName = true,
             });
             messageModelsList.Add(new MessageModel()
             {
@@ -301,6 +312,8 @@ namespace HadayIMWpfControls.WPFControls
                 MessageType = MessageTypes.Image,
                 OrientationType = OrientationTypes.Right,
                 Message = @"d:\2.jpg",
+                UserInfo = userInfo,
+
             };
             messageModelsList.Add(imageModel);
         }

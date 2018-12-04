@@ -88,6 +88,11 @@ namespace HadayIMWpfControls.WPFControls
         /// 右键-转发消息
         /// </summary>
         public event TranspondHanler TranspondMeaageEvent;
+        public delegate void SaveAsHanler(object o);
+        /// <summary>
+        /// 右键-转发消息
+        /// </summary>
+        public event SaveAsHanler SaveAsEvent;
 
         private void copy_Click(object sender, RoutedEventArgs e)
         {
@@ -120,6 +125,13 @@ namespace HadayIMWpfControls.WPFControls
             var temp2 = temp?.DataContext;
             if (TranspondMeaageEvent != null && temp2 != null)
                 TranspondMeaageEvent(temp2);
+        }
+        private void saveAs_Click(object sender, RoutedEventArgs e)
+        {
+            var temp = sender as MenuItem;
+            var temp2 = temp?.DataContext;
+            if (SaveAsEvent != null && temp2 != null)
+                SaveAsEvent(temp2);
         }
 
         private void headImageLeft_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -343,6 +355,7 @@ namespace HadayIMWpfControls.WPFControls
                 }
             }
         }
+
 
 
 

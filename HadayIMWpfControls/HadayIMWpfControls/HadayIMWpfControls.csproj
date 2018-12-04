@@ -62,6 +62,7 @@
     <Compile Include="WPFControls\Chat\Loading.xaml.cs">
       <DependentUpon>Loading.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPFControls\Converters\ConverterBoolToVisible.cs" />
     <Compile Include="WPFControls\Converters\ConverterImageStateToVisible.cs" />
     <Compile Include="WPFControls\Converters\ConverterMessageToDocument.cs" />
     <Compile Include="WPFControls\Converters\ConverterStringToBrushes .cs" />

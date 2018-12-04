@@ -9,19 +9,40 @@
              d:DesignHeight="450" d:DesignWidth="800" Drop="UserControl_Drop" AllowDrop="True">
     <UserControl.Resources>
         <GeometryGroup x:Key="clipGeometry" FillRule="Nonzero">
-            <EllipseGeometry RadiusX="17" RadiusY="17" Center="17, 17"></EllipseGeometry>
+            <EllipseGeometry RadiusX="20" RadiusY="20" Center="20, 20"></EllipseGeometry>
         </GeometryGroup>
         <ContextMenu x:Key="ContextMenu">
             <MenuItem Name="copy" Header="复制" Click='copy_Click'/>
-            <MenuItem Name="reference" Header="回复" Click='reference_Click'/>
             <MenuItem Name="undo" Header="撤销" Click='undo_Click'/>
             <MenuItem Name="transpond" Header="转发" Click='transpond_Click'/>
         </ContextMenu>
+        <ContextMenu x:Key="ContextMenuWithImage">
+            <MenuItem Header="复制" Click='copy_Click'/>            
+            <MenuItem Header="撤销" Click='undo_Click'/>
+            <MenuItem Header="转发" Click='transpond_Click'/>
+            <MenuItem  Header="另存为" Click='saveAs_Click'/>
+        </ContextMenu>
+        <ContextMenu x:Key="ContextMenuWithText">
+            <MenuItem Header="复制" Click='copy_Click'/>
+            <!--<MenuItem Header="回复" Click='reference_Click'/>-->
+            <MenuItem Header="撤销" Click='undo_Click'/>
+            <MenuItem Header="转发" Click='transpond_Click'/>
+        </ContextMenu>
         <ContextMenu x:Key="ContextMenuOther">
-            <MenuItem  Header="复制" Click='copy_Click'/>
-            <MenuItem  Header="回复" Click='reference_Click'/>            
+            <MenuItem  Header="复制" Click='copy_Click'/>          
             <MenuItem  Header="转发" Click='transpond_Click'/>
         </ContextMenu>
+        <ContextMenu x:Key="ContextMenuOtherWithImage">
+            <MenuItem  Header="复制" Click='copy_Click'/>
+            <MenuItem  Header="转发" Click='transpond_Click'/>
+            <MenuItem  Header="另存为" Click='saveAs_Click'/>            
+        </ContextMenu>
+        <ContextMenu x:Key="ContextMenuOtherWithText">
+            <MenuItem  Header="复制" Click='copy_Click'/>
+            <MenuItem  Header="回复" Click='reference_Click'/>
+            <MenuItem  Header="转发" Click='transpond_Click'/>
+        </ContextMenu>
+
         <Style BasedOn="{StaticResource {x:Type Hyperlink}}" TargetType="Hyperlink">
             <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"></Setter>
             <Setter Property="Foreground" Value="#349FD7"></Setter>
@@ -31,23 +52,26 @@
         <local:ConverterImageStateToVisiblel x:Key="ConverterImageStateToVisiblel"/>
         <local:ConverterImageStateToProgressVisiblel x:Key="ConverterImageStateToProgressVisiblel"/>
         <local:ConverterMessageToDocument x:Key="ConverterMessageToDocument"/>
+        <local:ConverterBoolToVisible x:Key="ConverterBoolToVisible"/>
         <DataTemplate x:Key="Text">
             <Grid HorizontalAlignment="Left" Margin="3,8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>                  
                 </Grid.ColumnDefinitions>
-                <Image x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="34" Height="34" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="5,0,10,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
+                <Image x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="8,10" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp" SnapsToDevicePixels="True"></Image>
                 <Grid Grid.Column="1" >
                     <Grid.RowDefinitions>
                         <RowDefinition/>
+                        <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>                       
                     </Grid.ColumnDefinitions>
-                    <Path  Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
+                    <TextBlock Text="{Binding UserInfo.UserName}" Visibility="{Binding IsShowUserName,Converter={StaticResource ConverterBoolToVisible}}" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,3" FontSize="11"></TextBlock>
+                    <Path Grid.Row="1"  Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
                         <Path.Data>
                             <PathGeometry>
                                 <PathFigure StartPoint="0,0">
@@ -56,7 +80,7 @@
                             </PathGeometry>
                         </Path.Data>
                     </Path>
-                    <Border x:Name="contentBorder" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"  Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="10"  ContextMenu="{StaticResource ContextMenuOther}">
+                    <Border Grid.Row="1" x:Name="contentBorder" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"  Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="10"  ContextMenu="{StaticResource ContextMenuOtherWithText}">
                         <TextBox Text="{Binding Message}" TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0" ContextMenu="{x:Null}" Background="Transparent" MaxWidth="300"></TextBox>
                     </Border>                    
                 </Grid>
@@ -75,17 +99,19 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Image x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="34" Height="34" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="5,0,10,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
+                <Image x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="8,10" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp" SnapsToDevicePixels="True"></Image>
                 <Grid Grid.Column="1" >
                     <Grid.RowDefinitions>
                         <RowDefinition/>
+                        <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Path  Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
+                    <TextBlock Text="{Binding UserInfo.UserName}" Visibility="{Binding IsShowUserName,Converter={StaticResource ConverterBoolToVisible}}"  Grid.ColumnSpan="2" Grid.Column="1" Margin="0,3" FontSize="11"></TextBlock>
+                    <Path Grid.Row="1"  Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
                         <Path.Data>
                             <PathGeometry>
                                 <PathFigure StartPoint="0,0">
@@ -94,7 +120,7 @@
                             </PathGeometry>
                         </Path.Data>
                     </Path>
-                    <Border x:Name="contentBorder" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"  Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="5,10"  ContextMenu="{StaticResource ContextMenuOther}">
+                    <Border x:Name="contentBorder" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"  Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="5,10"  ContextMenu="{StaticResource ContextMenuOther}">
                         <RichTextBox IsReadOnly="true"  Background="Transparent" BorderThickness="0" ContextMenu="{x:Null}" helper:RichTextBoxHelper.DocumentXaml="{Binding Message}"   FontSize="12" MaxWidth="300"/>                        
                     </Border>
                 </Grid>
@@ -118,17 +144,19 @@
                     <RowDefinition/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Image x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="34" Height="34" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="5,0,10,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
+                <Image x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}"  Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="8,10" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp" SnapsToDevicePixels="True"></Image>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
+                        <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Path  Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
+                    <TextBlock Text="{Binding UserInfo.UserName}" Visibility="{Binding IsShowUserName,Converter={StaticResource ConverterBoolToVisible}}"  Grid.ColumnSpan="2" Grid.Column="1" Margin="0,3" FontSize="11"></TextBlock>
+                    <Path Grid.Row="1"  Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
                         <Path.Data>
                             <PathGeometry>
                                 <PathFigure StartPoint="0,0">
@@ -137,7 +165,7 @@
                             </PathGeometry>
                         </Path.Data>
                     </Path>
-                    <Border x:Name="contentBorder" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenuOther}">
+                    <Border x:Name="contentBorder" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenuOtherWithImage}">
                         <Image Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform" MaxHeight="200" MaxWidth="300" MouseLeftButtonDown="Image_MouseUp" helper:ImageStretchHelper.ImageStretch="{Binding Message}"></Image>                    
                     </Border>
                 </Grid>
@@ -159,17 +187,19 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Image x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="34" Height="34" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="5,0,10,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
+                <Image x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="8,10" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp" SnapsToDevicePixels="True"></Image>
                 <Grid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" ContextMenu="{StaticResource ContextMenu}">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
+                        <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Path  Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
+                    <TextBlock Text="{Binding UserInfo.UserName}" Visibility="{Binding IsShowUserName,Converter={StaticResource ConverterBoolToVisible}}"  Grid.ColumnSpan="2" Grid.Column="1" Margin="0,3" FontSize="11"></TextBlock>
+                    <Path Grid.Row="1"  Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
                         <Path.Data>
                             <PathGeometry>
                                 <PathFigure StartPoint="0,0">
@@ -178,7 +208,7 @@
                             </PathGeometry>
                         </Path.Data>
                     </Path>
-                    <Border x:Name="contentBorder" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenuOther}">
+                    <Border x:Name="contentBorder" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenuOther}">
                         <Border CornerRadius="3" Background="White">
                             <Grid Width="275" Height="100">
                                 <Grid.RowDefinitions >
@@ -256,17 +286,19 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Image x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="34" Height="34" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="5,0,10,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
+                <Image x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="8,10" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp" SnapsToDevicePixels="True"></Image>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
+                        <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Path  Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
+                    <TextBlock  Text="{Binding UserInfo.UserName}" Visibility="{Binding IsShowUserName,Converter={StaticResource ConverterBoolToVisible}}"  Grid.ColumnSpan="2" Grid.Column="1" Margin="0,3" FontSize="11"></TextBlock>
+                    <Path Grid.Row="1"  Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
                         <Path.Data>
                             <PathGeometry>
                                 <PathFigure StartPoint="0,0">
@@ -275,7 +307,7 @@
                             </PathGeometry>
                         </Path.Data>
                     </Path>
-                    <Border x:Name="contentBorder" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="10"  ContextMenu="{StaticResource ContextMenuOther}">
+                    <Border x:Name="contentBorder" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="10"  ContextMenu="{StaticResource ContextMenuOther}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -309,15 +341,17 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>                    
-                    <Border x:Name="contentBorder" Grid.Column="0" Grid.RowSpan="2"  VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="10"  ContextMenu="{StaticResource ContextMenu}">
+                    </Grid.ColumnDefinitions>
+                    <TextBlock  HorizontalAlignment="Right" Text="{Binding UserInfo.UserName}" Visibility="{Binding IsShowUserName,Converter={StaticResource ConverterBoolToVisible}}"  Margin="0,3" FontSize="11"></TextBlock>
+                    <Border x:Name="contentBorder" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"  VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="10"  ContextMenu="{StaticResource ContextMenuWithText}">
                         <TextBox Text="{Binding Message}" TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0" Background="Transparent" ContextMenu="{x:Null}"  MaxWidth="300"></TextBox>
                     </Border>
-                    <Path x:Name="rightTrianglePath" Grid.Column="1" Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
+                    <Path Grid.Row="1" x:Name="rightTrianglePath" Grid.Column="1" Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
                         <Path.Data>
                             <PathGeometry>
                                 <PathFigure StartPoint="0,0">
@@ -327,7 +361,7 @@
                         </Path.Data>
                     </Path>
                 </Grid>
-                <Image Grid.Column="1" x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="34" Height="34" HorizontalAlignment="Right" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="10,0,5,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
+                <Image Grid.Column="1" x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="8,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
                 <Popup PopupAnimation="Fade" PlacementTarget="{Binding ElementName=headImageLeft}" Placement="Left" AllowsTransparency="True" StaysOpen="False" >
                     <local:UserInfo x:Name="leftUserInfo" Padding="10" DataContext="{Binding UserInfo}" SendMessage="leftUserInfo_SendMessage">
                         <local:UserInfo.Effect>
@@ -347,15 +381,17 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Border x:Name="contentBorder" Grid.Column="0" Grid.RowSpan="2"  VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="5,10"  ContextMenu="{StaticResource ContextMenu}">
+                    <TextBlock  HorizontalAlignment="Right" Text="{Binding UserInfo.UserName}" Visibility="{Binding IsShowUserName,Converter={StaticResource ConverterBoolToVisible}}"  Margin="0,3" FontSize="11"></TextBlock>
+                    <Border x:Name="contentBorder" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"  VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="5,10"  ContextMenu="{StaticResource ContextMenu}">
                         <RichTextBox IsReadOnly="true"  Background="Transparent" BorderThickness="0" ContextMenu="{x:Null}" helper:RichTextBoxHelper.DocumentXaml="{Binding Message}"   FontSize="12"  MaxWidth="300"/>
                     </Border>
-                    <Path x:Name="rightTrianglePath" Grid.Column="1" Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
+                    <Path x:Name="rightTrianglePath" Grid.Row="1" Grid.Column="1" Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
                         <Path.Data>
                             <PathGeometry>
                                 <PathFigure StartPoint="0,0">
@@ -365,7 +401,7 @@
                         </Path.Data>
                     </Path>
                 </Grid>
-                <Image Grid.Column="1" x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="34" Height="34" HorizontalAlignment="Right" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="10,0,5,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
+                <Image Grid.Column="1" x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="8,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
                 <Popup PopupAnimation="Fade" PlacementTarget="{Binding ElementName=headImageLeft}" Placement="Left" AllowsTransparency="True" StaysOpen="False" >
                     <local:UserInfo x:Name="leftUserInfo" Padding="10" DataContext="{Binding UserInfo}" SendMessage="leftUserInfo_SendMessage">
                         <local:UserInfo.Effect>
@@ -375,7 +411,6 @@
                 </Popup>
             </Grid>
         </DataTemplate>
-
         <DataTemplate x:Key="Image_Right">
             <Grid HorizontalAlignment="Right" Margin="3,8">
                 <Grid.ColumnDefinitions>
@@ -391,15 +426,17 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Border x:Name="contentBorder" Grid.Column="0" Grid.RowSpan="2"  VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenu}">
+                    <TextBlock HorizontalAlignment="Right" Text="{Binding UserInfo.UserName}" Visibility="{Binding IsShowUserName,Converter={StaticResource ConverterBoolToVisible}}"  Margin="0,3" FontSize="11"></TextBlock>
+                    <Border x:Name="contentBorder" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"  VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenuWithImage}">
                         <Image x:Name="image" Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform"  helper:ImageStretchHelper.ImageStretch="{Binding Message}"  MaxHeight="200" MaxWidth="200" MouseLeftButtonDown="Image_MouseUp"></Image>
                     </Border>
-                    <Path x:Name="rightTrianglePath" Grid.Column="1" Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
+                    <Path x:Name="rightTrianglePath" Grid.Row="1" Grid.Column="1" Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
                         <Path.Data>
                             <PathGeometry>
                                 <PathFigure StartPoint="0,0">
@@ -409,7 +446,7 @@
                         </Path.Data>
                     </Path>
                 </Grid>
-                <Image Grid.Column="2" x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="34" Height="34" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="10,0,5,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
+                <Image Grid.Column="2" x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="8,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
                 <ProgressBar x:Name="progressBar"  Grid.Row="1" Grid.Column="1"   Height="2"  Foreground="#3498DB"  Value="{Binding ImageProgressValue}" Margin="0,8,4,0" Visibility="{Binding ImageState,Converter={StaticResource ConverterImageStateToProgressVisiblel}}" />
                 <Image Grid.Column="0" Source="../Images/exclamation_red.png" Width="16" Height="16" HorizontalAlignment="Right" VerticalAlignment="Center" Stretch="Fill"  Margin="10" Visibility="{Binding ImageState,Converter={StaticResource ConverterImageStateToVisiblel}}"></Image>
                 <local:Loading   Margin="10" Visibility="{Binding ImageState,Converter={StaticResource ConverterImageStateToProgressVisiblel}}"></local:Loading>
@@ -434,17 +471,19 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="1" x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="34" Height="34" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="10,0,5,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
+                <Image Grid.Column="1" x:Name="headImageLeft" Source="{Binding UserInfo.UserImage}" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="8,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
                 <Grid Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" ContextMenu="{StaticResource ContextMenu}">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
+                        <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>                    
-                    <Border x:Name="contentBorder" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenu}">
+                    </Grid.ColumnDefinitions>
+                    <TextBlock  HorizontalAlignment="Right" Text="{Binding UserInfo.UserName}" Visibility="{Binding IsShowUserName,Converter={StaticResource ConverterBoolToVisible}}"  Margin="0,3" FontSize="11"></TextBlock>
+                    <Border x:Name="contentBorder" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenu}">
                         <Border CornerRadius="3" Background="White">
                             <Grid Width="275" Height="100">
                                 <Grid.RowDefinitions >
@@ -483,7 +522,7 @@
                             </Grid>
                         </Border>
                     </Border>
-                    <Path x:Name="rightTrianglePath" Grid.Column="1" Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
+                    <Path x:Name="rightTrianglePath" Grid.Row="1" Grid.Column="1" Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
                         <Path.Data>
                             <PathGeometry>
                                 <PathFigure StartPoint="0,0">
@@ -534,12 +573,14 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Border x:Name="contentBorder" Grid.Column="0" Grid.RowSpan="2"  VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="10"  ContextMenu="{StaticResource ContextMenu}">
+                    <TextBlock  HorizontalAlignment="Right" Text="{Binding UserInfo.UserName}" Visibility="{Binding IsShowUserName,Converter={StaticResource ConverterBoolToVisible}}"  Margin="0,3" FontSize="11"></TextBlock>
+                    <Border x:Name="contentBorder" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"  VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="10"  ContextMenu="{StaticResource ContextMenu}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -551,7 +592,7 @@
                             <TextBox Grid.Row="2"  BorderThickness="0" Background="Transparent" TextWrapping="Wrap" IsReadOnly="True" ContextMenu="{x:Null}" Text="{Binding Message}"  MaxWidth="300"></TextBox>
                         </Grid>
                     </Border>
-                    <Path x:Name="rightTrianglePath" Grid.Column="1" Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
+                    <Path x:Name="rightTrianglePath" Grid.Row="1" Grid.Column="1" Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
                         <Path.Data>
                             <PathGeometry>
                                 <PathFigure StartPoint="0,0">
@@ -561,7 +602,7 @@
                         </Path.Data>
                     </Path>
                 </Grid>
-                <Image x:Name="headImageLeft" Grid.Column="1" Source="{Binding UserInfo.UserImage}" Width="34" Height="34" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="10,0,5,0" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
+                <Image x:Name="headImageLeft" Grid.Column="1" Source="{Binding UserInfo.UserImage}" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Clip="{StaticResource clipGeometry}" Margin="8,10" MouseLeftButtonUp="headImageLeft_MouseLeftButtonUp"></Image>
                 <Popup PopupAnimation="Fade" PlacementTarget="{Binding ElementName=headImageLeft}" Placement="Left" AllowsTransparency="True" StaysOpen="False" >
                     <local:UserInfo x:Name="leftUserInfo" Padding="10" DataContext="{Binding UserInfo}" SendMessage="leftUserInfo_SendMessage">
                         <local:UserInfo.Effect>
@@ -580,8 +621,7 @@
             <Border x:Name="contentBorder" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"  MinHeight="25"  Padding="12,6" Margin="3,8" >
                 <TextBlock x:Name="msgTextBlock" Opacity="0.6" TextWrapping="Wrap" Text="{Binding Message}"  ContextMenu="{x:Null}"></TextBlock>
             </Border>
-        </DataTemplate>
-        
+        </DataTemplate>        
     </UserControl.Resources>
     <Grid>
         <ItemsControl x:Name="listBox" ItemTemplateSelector="{StaticResource clts}" >
