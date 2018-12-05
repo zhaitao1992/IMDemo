@@ -1,6 +1,7 @@
 E:\MyCode\IMDemo\HadayIMWpfControls\HadayIMWpfControls\bin\Debug\HadayIMWpfControls.exe.config
 E:\MyCode\IMDemo\HadayIMWpfControls\HadayIMWpfControls\bin\Debug\HadayIMWpfControls.exe
 E:\MyCode\IMDemo\HadayIMWpfControls\HadayIMWpfControls\bin\Debug\HadayIMWpfControls.pdb
+E:\MyCode\IMDemo\HadayIMWpfControls\HadayIMWpfControls\bin\Debug\WpfAnimatedGif.dll
 E:\MyCode\IMDemo\HadayIMWpfControls\HadayIMWpfControls\obj\Debug\WPFControls\Chat\Loading.baml
 E:\MyCode\IMDemo\HadayIMWpfControls\HadayIMWpfControls\obj\Debug\WPFControls\Chat\FileControl.baml
 E:\MyCode\IMDemo\HadayIMWpfControls\HadayIMWpfControls\obj\Debug\WPFControls\Chat\UserInfo.baml

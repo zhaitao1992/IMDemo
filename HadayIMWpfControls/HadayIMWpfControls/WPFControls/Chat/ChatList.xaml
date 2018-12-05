@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HadayIMWpfControls.WPFControls"
              xmlns:helper="clr-namespace:HadayIMWpfControls.WPFControls.Helper"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" FontSize="12" FontFamily="Microsoft YaHei"
              d:DesignHeight="450" d:DesignWidth="800" Drop="UserControl_Drop" AllowDrop="True">
     <UserControl.Resources>
@@ -166,7 +167,11 @@
                         </Path.Data>
                     </Path>
                     <Border x:Name="contentBorder" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenuOtherWithImage}">
-                        <Image Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform" MaxHeight="200" MaxWidth="300" MouseLeftButtonDown="Image_MouseUp" helper:ImageStretchHelper.ImageStretch="{Binding Message}"></Image>                    
+                        <Image Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform" MaxHeight="100" MaxWidth="100" MouseLeftButtonDown="Image_MouseUp" helper:ImageStretchHelper.ImageStretch="{Binding Message}" 
+                               gif:ImageBehavior.AnimatedSource="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}"
+                               gif:ImageBehavior.RepeatBehavior="Forever"
+                               gif:ImageBehavior.AutoStart="True"
+                               ></Image>                    
                     </Border>
                 </Grid>
                 <ProgressBar x:Name="progressBar"  Grid.Row="1" Grid.Column="1"   Height="2"  Foreground="#3498DB"  Value="{Binding ImageProgressValue}" Margin="4,8,0,0" Visibility="{Binding ImageState,Converter={StaticResource ConverterImageStateToProgressVisiblel}}" />
@@ -174,9 +179,9 @@
                 <local:Loading  Grid.Column="2" Margin="10" Visibility="{Binding ImageState,Converter={StaticResource ConverterImageStateToProgressVisiblel}}"></local:Loading>
                 <Popup PopupAnimation="Fade" PlacementTarget="{Binding ElementName=headImageLeft}" Placement="Left" AllowsTransparency="True" StaysOpen="False" >
                     <local:UserInfo x:Name="leftUserInfo" Padding="10" DataContext="{Binding UserInfo}" SendMessage="leftUserInfo_SendMessage">
-                        <local:UserInfo.Effect>
+                        <!--<local:UserInfo.Effect>
                             <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="0" Opacity="1" />
-                        </local:UserInfo.Effect>
+                        </local:UserInfo.Effect>-->
                     </local:UserInfo>
                 </Popup>
             </Grid>
@@ -434,7 +439,10 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock HorizontalAlignment="Right" Text="{Binding UserInfo.UserName}" Visibility="{Binding IsShowUserName,Converter={StaticResource ConverterBoolToVisible}}"  Margin="0,3" FontSize="11"></TextBlock>
                     <Border x:Name="contentBorder" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"  VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenuWithImage}">
-                        <Image x:Name="image" Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform"  helper:ImageStretchHelper.ImageStretch="{Binding Message}"  MaxHeight="200" MaxWidth="200" MouseLeftButtonDown="Image_MouseUp"></Image>
+                        <Image x:Name="image" Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform"  helper:ImageStretchHelper.ImageStretch="{Binding Message}"  MaxHeight="200" MaxWidth="200" MouseLeftButtonDown="Image_MouseUp"
+                                gif:ImageBehavior.AnimatedSource="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}"
+                               gif:ImageBehavior.RepeatBehavior="Forever"
+                               gif:ImageBehavior.AutoStart="True"/>
                     </Border>
                     <Path x:Name="rightTrianglePath" Grid.Row="1" Grid.Column="1" Fill="{Binding BubbleBackground}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Visible">
                         <Path.Data>
@@ -624,7 +632,7 @@
         </DataTemplate>        
     </UserControl.Resources>
     <Grid>
-        <ItemsControl x:Name="listBox" ItemTemplateSelector="{StaticResource clts}" >
+        <ItemsControl x:Name="listBox" ItemTemplateSelector="{StaticResource clts}"  VirtualizingStackPanel.VirtualizationMode="Recycling" VirtualizingStackPanel.IsVirtualizing="True">
             <ItemsControl.Template>
                 <ControlTemplate>
                     <ScrollViewer x:Name="scrollViewer" Padding="{TemplateBinding Padding}" ScrollChanged="ScrollViewer_ScrollChanged">
@@ -632,6 +640,13 @@
                     </ScrollViewer>
                 </ControlTemplate>
             </ItemsControl.Template>
+
+            <!--<ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <helper:VirtualizingWrapPanel ScrollOffset="50" ChildHeight="440" ></helper:VirtualizingWrapPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>-->
+
         </ItemsControl>
         <Border x:Name="newMassageBorder" Grid.Row="1" Height="25"    Background="#badaf8"  VerticalAlignment="Bottom" Margin="0,0,17,0" MouseDown="Border_MouseDown" Cursor="Hand" Visibility="Collapsed">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0">

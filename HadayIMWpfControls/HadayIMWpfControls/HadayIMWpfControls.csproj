@@ -53,6 +53,9 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WpfAnimatedGif">
+      <HintPath>D:\桌面\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -70,6 +73,7 @@
     <Compile Include="WPFControls\Helper\ImageStretchHelper.cs" />
     <Compile Include="WPFControls\Helper\RichTextBoxHelper.cs" />
     <Compile Include="WPFControls\Helper\ScrollViewerBehavior.cs" />
+    <Compile Include="WPFControls\Helper\VirtualizingWrapPanel.cs" />
     <Compile Include="WPFControls\Helper\VisualTreeHelperExt.cs" />
     <Compile Include="WPFControls\Test\ChatHistoryListTest.xaml.cs">
       <DependentUpon>ChatHistoryListTest.xaml</DependentUpon>

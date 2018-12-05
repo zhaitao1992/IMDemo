@@ -176,7 +176,7 @@ namespace HadayIMWpfControls.WPFControls
                 MessageType = MessageTypes.Image,
                 OrientationType = OrientationTypes.Right,
                 UserInfo = userInfo,
-                Message = @"d:\2.jpg",
+                Message = @"d:\01.gif",
                 IsShowUserName = true,
             };
             messageModelsList.Add(imageModel);
@@ -214,7 +214,7 @@ namespace HadayIMWpfControls.WPFControls
                 MessageType = MessageTypes.Image,
                 OrientationType = OrientationTypes.Left,
                 UserInfo = otherUserInfo,
-                Message = @"d:\2.jpg",
+                Message = @"d:\01.gif",
 
 
             });
@@ -224,7 +224,7 @@ namespace HadayIMWpfControls.WPFControls
                 MessageType = MessageTypes.Image,
                 OrientationType = OrientationTypes.Right,
                 UserInfo = userInfo,
-                Message = @"d:\2.jpg",
+                Message = @"d:\01.gif",
 
 
             });
@@ -244,7 +244,7 @@ namespace HadayIMWpfControls.WPFControls
                 MessageType = MessageTypes.File,
                 OrientationType = OrientationTypes.Left,
                 UserInfo = otherUserInfo,
-                Message = @"d:\2.jpg",
+                Message = @"d:\01.gif",
                 FileModel = fileTest,
 
 
@@ -257,7 +257,7 @@ namespace HadayIMWpfControls.WPFControls
                 MessageType = MessageTypes.File,
                 OrientationType = OrientationTypes.Right,
                 UserInfo = userInfo,
-                Message = @"d:\2.jpg",
+                Message = @"d:\01.gif",
                 FileModel = new FileModel()
                 {
                     FileMsg = "测试发送中",
@@ -311,7 +311,7 @@ namespace HadayIMWpfControls.WPFControls
                 ID = DateTime.Now.Second,
                 MessageType = MessageTypes.Image,
                 OrientationType = OrientationTypes.Right,
-                Message = @"d:\2.jpg",
+                Message = @"d:\01.gif",
                 UserInfo = userInfo,
 
             };
@@ -414,51 +414,58 @@ namespace HadayIMWpfControls.WPFControls
                 Message = "左",
                 MessageTime = DateTime.Now.ToString()
             });
+            GC.Collect();
+
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            messageModelsList.Add(new MessageModel()
+            //messageModelsList.Add(new MessageModel()
+            //{
+            //    ID = DateTime.Now.Second,
+            //    MessageType = MessageTypes.Text,
+            //    OrientationType = OrientationTypes.Right,
+            //    UserInfo = userInfo,
+            //    Message = "右",
+            //    MessageTime = DateTime.Now.ToString()
+            //});
+            //imageModel = new MessageModel()
+            //{
+            //    ID = DateTime.Now.Second,
+            //    MessageType = MessageTypes.Image,
+            //    OrientationType = OrientationTypes.Right,
+            //    Message = @"d:\01.gif",
+            //};
+            //messageModelsList.Add(imageModel);
+            //imageModel = new MessageModel()
+            //{
+            //    ID = DateTime.Now.Second,
+            //    MessageType = MessageTypes.Image,
+            //    OrientationType = OrientationTypes.Right,
+            //    Message = @"d:\9.jpg",
+            //};
+            //messageModelsList.Add(imageModel);
+            //imageModel = new MessageModel()
+            //{
+            //    ID = DateTime.Now.Second,
+            //    MessageType = MessageTypes.Image,
+            //    OrientationType = OrientationTypes.Left,
+            //    Message = @"d:\01.gif",
+            //};
+
+            for (int i=0;i<50;i++)
             {
-                ID = DateTime.Now.Second,
-                MessageType = MessageTypes.Text,
-                OrientationType = OrientationTypes.Right,
-                UserInfo = userInfo,
-                Message = "右",
-                MessageTime = DateTime.Now.ToString()
-            });
-            imageModel = new MessageModel()
-            {
-                ID = DateTime.Now.Second,
-                MessageType = MessageTypes.Image,
-                OrientationType = OrientationTypes.Right,
-                Message = @"d:\1.jpg",
-            };
-            messageModelsList.Add(imageModel);
-            imageModel = new MessageModel()
-            {
-                ID = DateTime.Now.Second,
-                MessageType = MessageTypes.Image,
-                OrientationType = OrientationTypes.Right,
-                Message = @"d:\9.jpg",
-            };
-            messageModelsList.Add(imageModel);
-            imageModel = new MessageModel()
-            {
-                ID = DateTime.Now.Second,
-                MessageType = MessageTypes.Image,
-                OrientationType = OrientationTypes.Left,
-                Message = @"d:\1.jpg",
-            };
-            messageModelsList.Add(imageModel);
-            imageModel = new MessageModel()
-            {
-                ID = DateTime.Now.Second,
-                MessageType = MessageTypes.Image,
-                OrientationType = OrientationTypes.Left,
-                Message = @"d:\9.jpg",
-            };
-            messageModelsList.Add(imageModel);
+                imageModel = new MessageModel()
+                {
+                    ID = DateTime.Now.Second,
+                    MessageType = MessageTypes.Image,
+                    OrientationType = OrientationTypes.Left,
+                    Message = @"d:\02.gif",
+                    UserInfo = userInfo
+                };
+                messageModelsList.Add(imageModel);
+            }
+            GC.Collect();
         }
 
         
