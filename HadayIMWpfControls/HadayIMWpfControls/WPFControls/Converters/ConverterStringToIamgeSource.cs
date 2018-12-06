@@ -14,12 +14,16 @@ namespace HadayIMWpfControls.WPFControls
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (string.IsNullOrWhiteSpace(value.ToString())) return null;
-            return new BitmapImage(new Uri(value.ToString(), UriKind.RelativeOrAbsolute));
+            BitmapImage bitmapImage = new BitmapImage(new Uri(value.ToString(), UriKind.Absolute));             
+            return bitmapImage;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
-        }
+        }     
     }
+    
+
+
 }

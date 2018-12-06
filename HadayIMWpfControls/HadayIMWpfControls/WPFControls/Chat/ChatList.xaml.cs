@@ -62,6 +62,7 @@ namespace HadayIMWpfControls.WPFControls
                     }
 
                 }
+              
             }
             catch (Exception)
             {
@@ -138,10 +139,22 @@ namespace HadayIMWpfControls.WPFControls
         {
             try
             {
+
+                var img = sender as Image;
+                Popup popup = new Popup() { };
+                popup.PlacementTarget = img;
+                popup.Placement = PlacementMode.Left;
+                popup.AllowsTransparency = true;
+                popup.StaysOpen = false;
+                UserInfo userInfo = new UserInfo() { DataContext = ((MessageModel)img.DataContext).UserInfo };
+                popup.Child = userInfo;
+                popup.IsOpen = true;
+
                 var temp = sender as Image;
                 var temp2 = temp.Parent as Grid;
                 var temp3 = temp2.Children[temp2.Children.Count - 1] as Popup;
                 temp3.IsOpen = true;
+
             }
             catch 
             {

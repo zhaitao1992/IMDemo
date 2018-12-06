@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         mc:Ignorable="d"
         xmlns:local="clr-namespace:HadayIMWpfControls.WPFControls"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        gif:ImageBehavior.AnimateInDesignMode="True"
         Title="MainWindow" Height="500" Width="800"  Closing="Window_Closing">   
     <Grid Background="Transparent">
-        <local:ChatListTest x:Name="TestList"></local:ChatListTest>      
+        <local:ChatListTest x:Name="TestList"></local:ChatListTest>
+        
+          
     </Grid>
 </Window>

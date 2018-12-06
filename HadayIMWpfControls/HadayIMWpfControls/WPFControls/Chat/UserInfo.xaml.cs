@@ -24,17 +24,7 @@ namespace HadayIMWpfControls.WPFControls
         {
             InitializeComponent();
         }
-        //public UserInfo(BitmapImage image, string number, string name, string email, string phone, string telephone)
-        //{
-        //    InitializeComponent();
-        //    headImage.Source = image;
-        //    numberTextBlock.Text = number;
-        //    nameTextBlock.Text = name;
-        //    emailTextBlock.Text = email;
-        //    phoneTextBlock.Text = phone;
-        //    telephoneTextBlock.Text = telephone;           
-        //}
-
+        
         public delegate void MouseDownHanler1(object sender);
         /// <summary>
         ///发送消息

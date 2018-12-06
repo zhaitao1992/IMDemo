@@ -10,8 +10,8 @@ namespace HadayIMWpfControls.WPFControls.Models
     public class UserInfoModel :ModelBase
     {
          //用户信息弹窗
-        private BitmapImage _userImage;
-        public BitmapImage UserImage
+        private string _userImage;
+        public string UserImage
         {
             get { return _userImage; }
             set { Set(ref _userImage,value, "UserImage"); }

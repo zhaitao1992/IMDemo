@@ -139,7 +139,7 @@ namespace HadayIMWpfControls.WPFControls
         {
             var imageTemp = new BitmapImage(new Uri(@"d:\1.jpg", UriKind.Absolute));
             userInfo = new UserInfoModel();
-            userInfo.UserImage = imageTemp;
+            userInfo.UserImage = @"d:\1.jpg";
             userInfo.UserID = "X000000";
             userInfo.UserName = "小明本人";
             userInfo.UserPhone = "13812345678";
@@ -147,7 +147,7 @@ namespace HadayIMWpfControls.WPFControls
             userInfo.UserEmail = "123456@qq.com";
 
             otherUserInfo = new UserInfoModel();
-            otherUserInfo.UserImage = imageTemp;
+            otherUserInfo.UserImage = @"d:\1.jpg";
             otherUserInfo.UserID = "X000001";
             otherUserInfo.UserName = "张三";
             otherUserInfo.UserPhone = "13812345678";

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HadayIMWpfControls.WPFControls.Models
 {
-    public class ModelBase : INotifyPropertyChanged
+    public class ModelBase : INotifyPropertyChanged 
     {
         public void Set<T>(ref T field, T newValue = default(T), string propertyName = "")
         {
@@ -20,8 +20,7 @@ namespace HadayIMWpfControls.WPFControls.Models
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
                 return;
             }
-        }
-
+        }      
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

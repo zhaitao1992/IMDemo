@@ -43,7 +43,7 @@ namespace HadayIMWpfControls.WPFControls
             InitializeComponent();
             var imageTemp = new BitmapImage(new Uri(@"d:\1.jpg", UriKind.Absolute));
             userInfo = new UserInfoModel();
-            userInfo.UserImage = imageTemp;
+            userInfo.UserImage = @"d:\1.jpg";
             userInfo.UserID = "X000000";
             userInfo.UserName = "小明本人";
             userInfo.UserPhone = "13812345678";
@@ -52,7 +52,7 @@ namespace HadayIMWpfControls.WPFControls
 
             
             userInfo1 = new UserInfoModel();
-            userInfo1.UserImage = imageTemp;
+            userInfo1.UserImage = @"d:\1.jpg";
             userInfo1.UserID = "X000001";
             userInfo1.UserName = "张三";
             userInfo1.UserPhone = "13812345678";
@@ -61,7 +61,7 @@ namespace HadayIMWpfControls.WPFControls
 
 
             userInfo2 = new UserInfoModel();
-            userInfo2.UserImage = imageTemp;
+            userInfo2.UserImage = @"d:\1.jpg";
             userInfo2.UserID = "X000002";
             userInfo2.UserName = "李四";
             userInfo2.UserPhone = "138123456789";
@@ -196,7 +196,7 @@ namespace HadayIMWpfControls.WPFControls
                         chatNavigationModelsList.Add(new ChatNavigationModel()
                         {
                             UserID = userInfo1.UserID,
-                            HeadImage = userInfo1.UserImage,
+                            //HeadImage = userInfo1.UserImage,
                             UserName = userInfo1.UserName,
                             Message = "12345678910121314151617",
                             MessageTime = "10:11"
@@ -217,7 +217,7 @@ namespace HadayIMWpfControls.WPFControls
                         chatNavigationModelsList.Add(new ChatNavigationModel()
                         {
                             UserID = userInfo2.UserID,
-                            HeadImage = userInfo2.UserImage,
+                            //HeadImage = userInfo2.UserImage,
                             UserName = userInfo2.UserName,
                             Message = "123456789..................",
                             MessageTime = "10:11"

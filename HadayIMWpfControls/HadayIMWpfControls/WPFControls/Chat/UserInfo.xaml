@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HadayIMWpfControls.WPFControls"             
              mc:Ignorable="d" Width="320" Height="340" FontFamily="微软雅黑">
     <UserControl.Resources>
         <GeometryGroup x:Key="clipGeometry" FillRule="Nonzero">
             <EllipseGeometry RadiusX="31" RadiusY="31" Center="31, 31"></EllipseGeometry>
         </GeometryGroup>
+        <local:ConverterStringToIamgeSource x:Key="ConverterStringToIamgeSource"/>
     </UserControl.Resources>
     <Border CornerRadius="3" Background="White">
      <Grid >
@@ -25,54 +27,34 @@
             <ColumnDefinition Width="20"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="headImage" Grid.ColumnSpan="2" Source="{Binding UserImage}" Width="62" Height="62" Margin="12,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Fill" Clip="{StaticResource clipGeometry}"></Image>
-        <!--<StackPanel Grid.ColumnSpan="2" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" Opacity="0.5" Visibility="Collapsed" >
-            <Button  Width="20" Height="20" BorderThickness="0" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" >
-                <Path   Width="12"
-                            Height="3"
-                            Data="F1 M 5.00659,8.51962C 4.43613,8.51831 3.97266,8.98184 3.97266,9.55347C 3.97266,10.1238 4.435,10.586 5.00659,10.586L 14.1028,10.586C 14.6733,10.586 15.1353,10.1238 15.1367,9.55215C 15.1367,8.98056 14.6733,8.51962 14.1028,8.51962L 5.00659,8.51962 Z "
-                            Fill="Black"
-                            Opacity="0.8"
-                            Stretch="Fill" />
-            </Button>
-            <Button Grid.ColumnSpan="2" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="0" Background="Transparent" >
-                <Path
-                            x:Name="iconX"
-                            Width="12"
-                            Height="12"
-                            Data="F1 M 401.281,299.818L 398.795,297.333L 401.281,294.847C 401.684,294.445 401.684,293.79 401.281,293.386C 400.877,292.982 400.222,292.982 399.82,293.386L 397.334,295.872L 394.848,293.386C 394.445,292.982 393.79,292.982 393.386,293.386C 392.982,293.79 392.982,294.445 393.386,294.848L 395.872,297.334L 393.387,299.818C 392.984,300.222 392.982,300.876 393.387,301.281C 393.791,301.684 394.445,301.683 394.848,301.279L 397.333,298.795L 399.818,301.281C 400.222,301.684 400.877,301.684 401.281,301.281C 401.684,300.877 401.684,300.222 401.281,299.818 Z "
-                            Fill="Black"
-                            Opacity="0.8"
-                            Stretch="Fill" />
-            </Button>
-        </StackPanel>-->
-        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
-            <Image   Source="../Images/user_icon.png" Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Fill" Opacity="0.4" ></Image>
+            <Image x:Name="headImage" Grid.ColumnSpan="2" Source="{Binding UserImage,Converter={StaticResource ConverterStringToIamgeSource}}" Width="62" Height="62" Margin="12,0,0,0" RenderOptions.BitmapScalingMode="LowQuality" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Fill" Clip="{StaticResource clipGeometry}"></Image>
+         <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+            <Image   Source="../Images/user_icon.png"  Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Fill" Opacity="0.4"  RenderOptions.BitmapScalingMode="LowQuality"  ></Image>
             <TextBlock x:Name="numberTextBlock" VerticalAlignment="Center" Margin="10,0" Text="{Binding UserID}"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal">
-            <Image  Source="../Images/aName.png" Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Fill" Opacity="0.4"></Image>
+            <Image  Source="../Images/aName.png" Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Fill" Opacity="0.4"  RenderOptions.BitmapScalingMode="LowQuality" ></Image>
             <TextBlock VerticalAlignment="Center" Margin="10,0" Text="姓名" Opacity="0.5"></TextBlock>
             <TextBlock x:Name="nameTextBlock" VerticalAlignment="Center" Text="{Binding UserName}"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal">
-            <Image  Source="../Images/email.png" Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Fill" Opacity="0.4"></Image>
+            <Image  Source="../Images/email.png" Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Fill" Opacity="0.4"  RenderOptions.BitmapScalingMode="LowQuality" ></Image>
             <TextBlock VerticalAlignment="Center" Margin="10,0" Text="邮箱地址" Opacity="0.5"></TextBlock>
             <TextBlock x:Name="emailTextBlock" VerticalAlignment="Center" Text="{Binding UserEmail}"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal">
-            <Image  Source="../Images/phone.png" Width="25" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center"  Stretch="Fill" Opacity="0.4" Margin="-4,0,0,0"></Image>
+            <Image  Source="../Images/phone.png" Width="25" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center"  Stretch="Fill" Opacity="0.4" Margin="-4,0,0,0"  RenderOptions.BitmapScalingMode="LowQuality" ></Image>
             <TextBlock VerticalAlignment="Center" Margin="7,0,10,0" Text="移动电话" Opacity="0.5"></TextBlock>
             <TextBlock x:Name="phoneTextBlock" VerticalAlignment="Center" Text="{Binding UserPhone}"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal">
-            <Image  Source="../Images/telephone.png" Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Fill" Opacity="0.4"></Image>
+            <Image  Source="../Images/telephone.png" Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Fill" Opacity="0.4"  RenderOptions.BitmapScalingMode="LowQuality" ></Image>
             <TextBlock VerticalAlignment="Center" Margin="10,0" Text="办公电话" Opacity="0.5"></TextBlock>
             <TextBlock x:Name="telephoneTextBlock" VerticalAlignment="Center" Text="{Binding UserTelephone}"></TextBlock>
         </StackPanel>
         <Border Grid.Row="7" Grid.ColumnSpan="2"  CornerRadius="0,0,3,3">
             <Border.Background>
-                <ImageBrush ImageSource="../Images/userInfoBg.png"/>
+                    <ImageBrush ImageSource="../Images/userInfoBg.png"  RenderOptions.BitmapScalingMode="LowQuality" />
             </Border.Background>
         </Border>
             <Button Grid.Row="7" Grid.Column="1" Width="100" Height="28" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="17" Padding="10" Click="Button_Click" Cursor="Hand">
@@ -84,7 +66,7 @@
                     </ControlTemplate>
                 </Button.Template>
                 <StackPanel Orientation="Horizontal"   HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0">
-                    <Image  Source="../Images/send.png" Width="17" Height="17" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Fill"></Image>
+                    <Image  Source="../Images/send.png" Width="17" Height="17" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Fill"  RenderOptions.BitmapScalingMode="LowQuality" ></Image>
                     <TextBlock Text="发送信息" Foreground="#2381B4" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
                 </StackPanel>
             </Button>
