@@ -9,6 +9,7 @@ using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WpfAnimatedGif;
 
 namespace HadayIMWpfControls.WPFControls.Helper
 {
@@ -34,6 +35,10 @@ namespace HadayIMWpfControls.WPFControls.Helper
                         int f = message.IndexOf(']', i);
                         string str = message.Substring(i + 3, f - i - 3);
                         string imagePath = imageBasePath + str + ".jpg";
+                        if (!File.Exists(imagePath))
+                        {
+                            imagePath = imageBasePath + str + ".gif";
+                        }
                         try
                         {
                             if (File.Exists(imagePath))
@@ -45,11 +50,12 @@ namespace HadayIMWpfControls.WPFControls.Helper
                                 //    ((MediaElement)o).Position = ((MediaElement)o).Position.Add(TimeSpan.FromMilliseconds(1));
                                 //};
 
-                                System.Windows.Controls.Image image = new System.Windows.Controls.Image() { Source = imageTemp, MaxWidth = imageMaxWidth, MaxHeight = imageMaxWidth, Margin = new Thickness(2, 0, 2, 0) };
+                                System.Windows.Controls.Image image = new System.Windows.Controls.Image() { MaxWidth = imageMaxWidth, MaxHeight = imageMaxWidth, Margin = new Thickness(2, 0, 2, 0) };
                                 if (imageTemp.Width <= imageMaxWidth && imageTemp.Height <= imageMaxWidth)
                                 {
                                     image.Stretch = Stretch.None;
                                 }
+                                ImageBehavior.SetAnimatedSource(image , imageTemp);                              
                                 paragraph.Inlines.Add(new InlineUIContainer(image));                               
                                 i = f;
                             }
@@ -105,6 +111,10 @@ namespace HadayIMWpfControls.WPFControls.Helper
                         int f = message.IndexOf(']', i);
                         string str = message.Substring(i + 3, f - i - 3);
                         string imagePath = imageBasePath + str + ".jpg";
+                        if (!File.Exists(imagePath))
+                        {
+                            imagePath = imageBasePath + str + ".gif";
+                        }
                         try
                         {
                             if (File.Exists(imagePath))
@@ -159,7 +169,7 @@ namespace HadayIMWpfControls.WPFControls.Helper
             TextRange range = new TextRange(t.ContentStart, t.ContentEnd);
             var text = range.Text;
             var formatText = GetFormattedText(t);        
-            return Math.Min(formatText.WidthIncludingTrailingWhitespace+ imageWidth + 18 , w);
+            return Math.Min(formatText.WidthIncludingTrailingWhitespace+ imageWidth + 20 , w);
         }
 
         public static FormattedText GetFormattedText(FlowDocument doc)

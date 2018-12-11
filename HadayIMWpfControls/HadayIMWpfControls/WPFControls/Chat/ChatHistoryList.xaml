@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HadayIMWpfControls.WPFControls"           
              xmlns:helper="clr-namespace:HadayIMWpfControls.WPFControls.Helper"
+              xmlns:gif="http://wpfanimatedgif.codeplex.com"
+             gif:ImageBehavior.AnimateInDesignMode="True"  
              mc:Ignorable="d" FontFamily="Microsoft YaHei"
              d:DesignHeight="450" d:DesignWidth="800" >
     <UserControl.Resources>    
@@ -28,7 +30,7 @@
                                 <Run Text=" "></Run>
                                 <Run x:Name="Time" Text="{Binding MessageTime}"></Run>
                 </TextBlock>
-                <TextBlock Grid.Row="1" Text="{Binding Message}" TextWrapping="Wrap" Margin="15,5" MaxWidth="500"></TextBlock>
+                <TextBlock Grid.Row="1" Text="{Binding Message}" TextWrapping="Wrap" Margin="15,5" MaxWidth="500" HorizontalAlignment="Left"></TextBlock>
             </Grid>              
         </DataTemplate>
         <DataTemplate x:Key="RichText">
@@ -41,13 +43,13 @@
                                 <Run x:Name="userName" Text="{Binding UserInfo.UserName}"></Run>
                                 <Run Text=" "></Run>
                                 <Run x:Name="Time" Text="{Binding MessageTime}"></Run>
-                </TextBlock>
-                <!--<TextBlock Grid.Row="1" Text="{Binding Message}" TextWrapping="Wrap" Margin="15,5"></TextBlock>-->
-                <RichTextBox Grid.Row="1" IsReadOnly="true"  Background="Transparent" BorderThickness="0" ContextMenu="{x:Null}" Margin="15,5" helper:RichTextBoxHelper.DocumentXaml="{Binding Message}"   FontSize="12" MaxWidth="500" HorizontalAlignment="Left"/>
+                </TextBlock>                
+                <RichTextBox Grid.Row="1" IsReadOnly="true"  Background="Transparent" BorderThickness="0" ContextMenu="{x:Null}" Margin="15,5" helper:RichTextBoxHelper.DocumentXaml="{Binding Message}"   
+                             FontSize="12" MaxWidth="500" HorizontalAlignment="Left"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="Image">
-            <Grid  ContextMenu="{StaticResource ContextMenu}" Width="{Binding Width}"  Background="Transparent" HorizontalAlignment="Left">
+            <Grid  ContextMenu="{StaticResource ContextMenu}"  Width="{Binding MaxWidth}"  Background="Transparent" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
@@ -57,7 +59,8 @@
                                 <Run Text=" "></Run>
                                 <Run x:Name="Time" Text="{Binding MessageTime}"></Run>
                 </TextBlock>
-                <Image Grid.Row="1" Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform" MaxHeight="200" MaxWidth="300" Margin="15,5" helper:ImageStretchHelper.ImageStretch="{Binding Message}"></Image>
+                <Image Grid.Row="1" gif:ImageBehavior.AnimatedSource="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform" MaxHeight="200" MaxWidth="300" Margin="15,5" 
+                       helper:ImageStretchHelper.ImageStretch="{Binding Message}" HorizontalAlignment="Left"></Image>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="File">
@@ -71,7 +74,7 @@
                                 <Run Text=" "></Run>
                                 <Run x:Name="Time" Text="{Binding MessageTime}"></Run>
                 </TextBlock>
-                <Border CornerRadius="3" Background="White" Grid.Row="1" BorderThickness="1" BorderBrush="#c1c1c1" Margin="15,5">
+                <Border CornerRadius="3" Background="White" Grid.Row="1" BorderThickness="1" BorderBrush="#c1c1c1" Margin="15,5" Width="275" Height="100" HorizontalAlignment="Left">
                     <Grid Width="275" Height="100">
                         <Grid.RowDefinitions >
                             <RowDefinition Height="33"/>
@@ -143,7 +146,14 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
-        <ListBox x:Name="listBox" ScrollViewer.CanContentScroll="False"  ItemTemplateSelector="{StaticResource chlts}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" BorderThickness="0,0,1,0" BorderBrush="#c9c9c9" >
+        <ListBox x:Name="listBox" ScrollViewer.CanContentScroll="False" Background="Transparent"  ItemTemplateSelector="{StaticResource chlts}" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" BorderThickness="0,0,1,0" BorderBrush="#c9c9c9" >
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+
         </ListBox>
         <Border x:Name="seachBorder"  Height="40" Grid.Row="1" BorderThickness="0,0,1,0" BorderBrush="#c9c9c9" Background="#f1f1f1" Visibility="Collapsed">
             <StackPanel Orientation="Horizontal" Margin="5">

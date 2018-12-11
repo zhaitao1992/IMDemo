@@ -82,8 +82,8 @@ namespace HadayIMWpfControls.WPFControls.Models
             get { return _imageState; }
             set { Set(ref _imageState, value, "ImageState"); }
         }
-
-        private bool _isShowUserName;
+        //是否展示用户名
+        private bool _isShowUserName=false;
         public bool IsShowUserName
         {
             get { return _isShowUserName; }

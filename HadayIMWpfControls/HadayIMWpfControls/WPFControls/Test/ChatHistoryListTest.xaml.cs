@@ -162,7 +162,8 @@ namespace HadayIMWpfControls.WPFControls
                 OrientationType = OrientationTypes.Left,
                 UserInfo = otherUserInfo,
                 Message = "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString(),
-                MessageTime= DateTime.Now.ToString()
+                MessageTime= DateTime.Now.ToString(),
+                IsShowUserName=true
             });
             messageModelsList.Add(new MessageModel()
             {
@@ -173,80 +174,80 @@ namespace HadayIMWpfControls.WPFControls
                 Message = "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString(),
                 MessageTime = DateTime.Now.ToString()
             });
-            messageModelsList.Add(new MessageModel()
-            {
-                ID = DateTime.Now.Second,
-                MessageType = MessageTypes.Image,
-                OrientationType = OrientationTypes.Left,
-                UserInfo = otherUserInfo,
-                Message = @"d:\2.jpg",
-                MessageTime = DateTime.Now.ToString()
-            });
-            messageModelsList.Add(new MessageModel()
-            {
-                ID = DateTime.Now.Second,
-                MessageType = MessageTypes.Image,
-                OrientationType = OrientationTypes.Right,
-                UserInfo = userInfo,
-                Message = @"d:\2.jpg",
-                MessageTime = DateTime.Now.ToString()
-            });
+            //messageModelsList.Add(new MessageModel()
+            //{
+            //    ID = DateTime.Now.Second,
+            //    MessageType = MessageTypes.Image,
+            //    OrientationType = OrientationTypes.Left,
+            //    UserInfo = otherUserInfo,
+            //    Message = @"d:\2.jpg",
+            //    MessageTime = DateTime.Now.ToString()
+            //});
+            //messageModelsList.Add(new MessageModel()
+            //{
+            //    ID = DateTime.Now.Second,
+            //    MessageType = MessageTypes.Image,
+            //    OrientationType = OrientationTypes.Right,
+            //    UserInfo = userInfo,
+            //    Message = @"d:\01.gif",
+            //    MessageTime = DateTime.Now.ToString()
+            //});
 
-            messageModelsList.Add(new MessageModel()
-            {
-                ID = DateTime.Now.Second,
-                MessageType = MessageTypes.Quote,
-                OrientationType = OrientationTypes.Left,
-                UserInfo = otherUserInfo,
-                QuoteChatMessage = "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString(),
-                Message = "收到、",
-                MessageTime = DateTime.Now.ToString()
-            });
-            messageModelsList.Add(new MessageModel()
-            {
-                ID = DateTime.Now.Second,
-                MessageType = MessageTypes.Quote,
-                OrientationType = OrientationTypes.Right,
-                UserInfo = userInfo,
-                QuoteChatMessage = "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString(),
-                Message = "收到、",
-                MessageTime = DateTime.Now.ToString()
-            });
+            //messageModelsList.Add(new MessageModel()
+            //{
+            //    ID = DateTime.Now.Second,
+            //    MessageType = MessageTypes.Quote,
+            //    OrientationType = OrientationTypes.Left,
+            //    UserInfo = otherUserInfo,
+            //    QuoteChatMessage = "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString(),
+            //    Message = "收到、",
+            //    MessageTime = DateTime.Now.ToString()
+            //});
+            //messageModelsList.Add(new MessageModel()
+            //{
+            //    ID = DateTime.Now.Second,
+            //    MessageType = MessageTypes.Quote,
+            //    OrientationType = OrientationTypes.Right,
+            //    UserInfo = userInfo,
+            //    QuoteChatMessage = "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString() + "现在时间" + DateTime.Now.ToString(),
+            //    Message = "收到、",
+            //    MessageTime = DateTime.Now.ToString()
+            //});
 
-            FileModel fileTest = new FileModel()
-            {
-                FileMsg = "已发送",
-                FileName = "text.exe",
-                FileSize = "99.0M",
-                FileProgressValue = 100,
-            };
-            MessageModel messageModelTest = new MessageModel()
-            {
-                ID = 123,
-                MessageType = MessageTypes.File,
-                OrientationType = OrientationTypes.Left,
-                UserInfo = otherUserInfo,
-                Message = @"d:\2.jpg",
-                FileModel = fileTest,
-                MessageTime = DateTime.Now.ToString()
+            //FileModel fileTest = new FileModel()
+            //{
+            //    FileMsg = "已发送",
+            //    FileName = "text.exe",
+            //    FileSize = "99.0M",
+            //    FileProgressValue = 100,
+            //};
+            //MessageModel messageModelTest = new MessageModel()
+            //{
+            //    ID = 123,
+            //    MessageType = MessageTypes.File,
+            //    OrientationType = OrientationTypes.Left,
+            //    UserInfo = otherUserInfo,
+            //    Message = @"d:\2.jpg",
+            //    FileModel = fileTest,
+            //    MessageTime = DateTime.Now.ToString()
 
-            };
+            //};
 
-            messageModelsList.Add(messageModelTest);
-            messageModelsList.Add(new MessageModel()
-            {
-                ID = DateTime.Now.Second,
-                MessageType = MessageTypes.File,
-                OrientationType = OrientationTypes.Right,
-                UserInfo = userInfo,
-                FileModel = new FileModel() {
-                    FileMsg = "已发送",
-                    FileName = "text.exe",
-                    FileSize = "99.0M",
-                    FileProgressValue = 100,
-                },                
-                MessageTime = DateTime.Now.ToString()
-            });
+            //messageModelsList.Add(messageModelTest);
+            //messageModelsList.Add(new MessageModel()
+            //{
+            //    ID = DateTime.Now.Second,
+            //    MessageType = MessageTypes.File,
+            //    OrientationType = OrientationTypes.Right,
+            //    UserInfo = userInfo,
+            //    FileModel = new FileModel() {
+            //        FileMsg = "已发送",
+            //        FileName = "text.exe",
+            //        FileSize = "99.0M",
+            //        FileProgressValue = 100,
+            //    },                
+            //    MessageTime = DateTime.Now.ToString()
+            //});
         }  
 
         private void Button_Click(object sender, RoutedEventArgs e)

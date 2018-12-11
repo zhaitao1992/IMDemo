@@ -25,11 +25,12 @@
             <MenuItem  Header="另存为" Click='saveAs_Click'/>
         </ContextMenu>
         <ContextMenu x:Key="ContextMenuWithText">
-            <MenuItem Header="复制" Click='copy_Click'/>
-            <!--<MenuItem Header="回复" Click='reference_Click'/>-->
+            <MenuItem Header="复制" Click='copy_Click'/>          
             <MenuItem Header="撤销" Click='undo_Click'/>
             <MenuItem Header="转发" Click='transpond_Click'/>
+            <MenuItem  Header="回复" Click='reference_Click'/>
         </ContextMenu>
+        
         <ContextMenu x:Key="ContextMenuOther">
             <MenuItem  Header="复制" Click='copy_Click'/>          
             <MenuItem  Header="转发" Click='transpond_Click'/>
@@ -168,7 +169,7 @@
                         </Path.Data>
                     </Path>
                     <Border x:Name="contentBorder" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenuOtherWithImage}">
-                        <Image Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform" MaxHeight="100" MaxWidth="100" MouseLeftButtonDown="Image_MouseUp" helper:ImageStretchHelper.ImageStretch="{Binding Message}" 
+                        <Image  Stretch="Uniform" MaxHeight="100" MaxWidth="100" MouseLeftButtonDown="Image_MouseUp" helper:ImageStretchHelper.ImageStretch="{Binding Message}" 
                                gif:ImageBehavior.AnimatedSource="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}"
                                gif:ImageBehavior.RepeatBehavior="Forever"
                                gif:ImageBehavior.AutoStart="True"                               
@@ -440,7 +441,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock HorizontalAlignment="Right" Text="{Binding UserInfo.UserName}" Visibility="{Binding IsShowUserName,Converter={StaticResource ConverterBoolToVisible}}"  Margin="0,3" FontSize="11"></TextBlock>
                     <Border x:Name="contentBorder" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"  VerticalAlignment="Center" Background="{Binding BubbleBackground}" MinHeight="32" CornerRadius="2" Padding="8"  ContextMenu="{StaticResource ContextMenuWithImage}">
-                        <Image x:Name="image" Source="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}" Stretch="Uniform"  helper:ImageStretchHelper.ImageStretch="{Binding Message}"  MaxHeight="200" MaxWidth="200" MouseLeftButtonDown="Image_MouseUp"
+                        <Image x:Name="image" Stretch="Uniform"  helper:ImageStretchHelper.ImageStretch="{Binding Message}"  MaxHeight="200" MaxWidth="200" MouseLeftButtonDown="Image_MouseUp"
                                 gif:ImageBehavior.AnimatedSource="{Binding Message,Converter={StaticResource ConverterStringToIamgeSource}}"
                                gif:ImageBehavior.RepeatBehavior="Forever"
                                gif:ImageBehavior.AutoStart="True"/>
@@ -633,11 +634,11 @@
         </DataTemplate>        
     </UserControl.Resources>
     <Grid>
-        <ItemsControl x:Name="listBox" ItemTemplateSelector="{StaticResource clts}"  VirtualizingStackPanel.VirtualizationMode="Recycling" VirtualizingStackPanel.IsVirtualizing="True">
+        <ItemsControl x:Name="listBox" ItemTemplateSelector="{StaticResource clts}"  VirtualizingStackPanel.VirtualizationMode="Standard" VirtualizingStackPanel.IsVirtualizing="True">
             <ItemsControl.Template>
                 <ControlTemplate>
-                    <ScrollViewer x:Name="scrollViewer" Padding="{TemplateBinding Padding}" ScrollChanged="ScrollViewer_ScrollChanged" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling">
-                        <ItemsPresenter  x:Name="itemsPresenter" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                    <ScrollViewer x:Name="scrollViewer" Padding="{TemplateBinding Padding}" ScrollChanged="ScrollViewer_ScrollChanged" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Standard">
+                        <ItemsPresenter  x:Name="itemsPresenter" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Standard"/>
                     </ScrollViewer>
                 </ControlTemplate>
             </ItemsControl.Template> 
